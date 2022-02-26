@@ -12,7 +12,7 @@ public class ChallengesDTO {
     private final long buffsStolen;
     private final long controlWardsPlaced;
     private final long damagePerMinute;
-    private final long damageTakenOnTeamPercentage;
+    private final float damageTakenOnTeamPercentage;
     private final long dancedWithRiftHerald;
     private final long effectiveHealAndShielding;
     private final long elderDragonKillsWithOpposingSoul;
@@ -22,16 +22,15 @@ public class ChallengesDTO {
     private final long epicMonsterKillsNearEnemyJungler;
     private final long epicMonsterKillsWithin30SecondsOfSpawn;
     private final long epicMonsterSteals;
-    private final long firstTurretKilledTime;
+    private final float firstTurretKilledTime;
     private final long flawlessAces;
     private final long fullTeamTakedown;
-    private final long gameLength;
+    private final float gameLength;
     private final long goldPerMinute;
     private final long hadOpenNexus;
     private final float kda;
     private final float killParticipation;
     private final long maxKillDeficit;
-    private final long mostWardsDestroyedOneSweeper;
     private final long perfectDragonSoulsTaken;
     private final long riftHeraldTakedowns;
     private final long scuttleCrabKills;
@@ -45,12 +44,12 @@ public class ChallengesDTO {
     private final long takedownsBeforeJungleMinionSpawn;
     private final long takedownsInAlcove;
     private final long takedownsInEnemyFountain;
-    private final long teamDamagePercentage;
+    private final float teamDamagePercentage;
     private final long teamElderDragonKills;
     private final long teamRiftHeraldKills;
     private final long turretPlatesTaken;
     private final long turretTakedowns;
-    private final long visionScorePerMinute;
+    private final float visionScorePerMinute;
     private final long wardTakedowns;
     private final long wardsGuarded;
 
@@ -63,7 +62,7 @@ public class ChallengesDTO {
             @JsonProperty("buffsStolen,") long buffsStolen,
             @JsonProperty("controlWardsPlaced,") long controlWardsPlaced,
             @JsonProperty("damagePerMinute,") long damagePerMinute,
-            @JsonProperty("damageTakenOnTeamPercentage,") long damageTakenOnTeamPercentage,
+            @JsonProperty("damageTakenOnTeamPercentage,") float damageTakenOnTeamPercentage,
             @JsonProperty("dancedWithRiftHerald,") long dancedWithRiftHerald,
             @JsonProperty("effectiveHealAndShielding,") long effectiveHealAndShielding,
             @JsonProperty("elderDragonKillsWithOpposingSoul,") long elderDragonKillsWithOpposingSoul,
@@ -73,16 +72,15 @@ public class ChallengesDTO {
             @JsonProperty("epicMonsterKillsNearEnemyJungler,") long epicMonsterKillsNearEnemyJungler,
             @JsonProperty("epicMonsterKillsWithin30SecondsOfSpawn,") long epicMonsterKillsWithin30SecondsOfSpawn,
             @JsonProperty("epicMonsterSteals,") long epicMonsterSteals,
-            @JsonProperty("firstTurretKilledTime,") long firstTurretKilledTime,
+            @JsonProperty("firstTurretKilledTime,") float firstTurretKilledTime,
             @JsonProperty("flawlessAces,") long flawlessAces,
             @JsonProperty("fullTeamTakedown,") long fullTeamTakedown,
-            @JsonProperty("gameLength,") long gameLength,
+            @JsonProperty("gameLength,") float gameLength,
             @JsonProperty("goldPerMinute,") long goldPerMinute,
             @JsonProperty("hadOpenNexus,") long hadOpenNexus,
             @JsonProperty("kda,") long kda,
             @JsonProperty("killParticipation,") long killParticipation,
             @JsonProperty("maxKillDeficit,") long maxKillDeficit,
-            @JsonProperty("mostWardsDestroyedOneSweeper,") long mostWardsDestroyedOneSweeper,
             @JsonProperty("perfectDragonSoulsTaken,") long perfectDragonSoulsTaken,
             @JsonProperty("riftHeraldTakedowns,") long riftHeraldTakedowns,
             @JsonProperty("scuttleCrabKills,") long scuttleCrabKills,
@@ -96,12 +94,12 @@ public class ChallengesDTO {
             @JsonProperty("takedownsBeforeJungleMinionSpawn,") long takedownsBeforeJungleMinionSpawn,
             @JsonProperty("takedownsInAlcove,") long takedownsInAlcove,
             @JsonProperty("takedownsInEnemyFountain,") long takedownsInEnemyFountain,
-            @JsonProperty("teamDamagePercentage,") long teamDamagePercentage,
+            @JsonProperty("teamDamagePercentage,") float teamDamagePercentage,
             @JsonProperty("teamElderDragonKills,") long teamElderDragonKills,
             @JsonProperty("teamRiftHeraldKills,") long teamRiftHeraldKills,
             @JsonProperty("turretPlatesTaken,") long turretPlatesTaken,
             @JsonProperty("turretTakedowns,") long turretTakedowns,
-            @JsonProperty("visionScorePerMinute,") long visionScorePerMinute,
+            @JsonProperty("visionScorePerMinute,") float visionScorePerMinute,
             @JsonProperty("wardTakedowns,") long wardTakedowns,
             @JsonProperty("wardsGuarded) {") long wardsGuarded) {
         this.abilityUses = abilityUses;
@@ -130,7 +128,6 @@ public class ChallengesDTO {
         this.kda = kda;
         this.killParticipation = killParticipation;
         this.maxKillDeficit = maxKillDeficit;
-        this.mostWardsDestroyedOneSweeper = mostWardsDestroyedOneSweeper;
         this.perfectDragonSoulsTaken = perfectDragonSoulsTaken;
         this.riftHeraldTakedowns = riftHeraldTakedowns;
         this.scuttleCrabKills = scuttleCrabKills;
@@ -182,7 +179,7 @@ public class ChallengesDTO {
         return damagePerMinute;
     }
 
-    public long getDamageTakenOnTeamPercentage() {
+    public float getDamageTakenOnTeamPercentage() {
         return damageTakenOnTeamPercentage;
     }
 
@@ -222,7 +219,7 @@ public class ChallengesDTO {
         return epicMonsterSteals;
     }
 
-    public long getFirstTurretKilledTime() {
+    public float getFirstTurretKilledTime() {
         return firstTurretKilledTime;
     }
 
@@ -234,7 +231,7 @@ public class ChallengesDTO {
         return fullTeamTakedown;
     }
 
-    public long getGameLength() {
+    public float getGameLength() {
         return gameLength;
     }
 
@@ -256,10 +253,6 @@ public class ChallengesDTO {
 
     public long getMaxKillDeficit() {
         return maxKillDeficit;
-    }
-
-    public long getMostWardsDestroyedOneSweeper() {
-        return mostWardsDestroyedOneSweeper;
     }
 
     public long getPerfectDragonSoulsTaken() {
@@ -314,7 +307,7 @@ public class ChallengesDTO {
         return takedownsInEnemyFountain;
     }
 
-    public long getTeamDamagePercentage() {
+    public float getTeamDamagePercentage() {
         return teamDamagePercentage;
     }
 
@@ -334,7 +327,7 @@ public class ChallengesDTO {
         return turretTakedowns;
     }
 
-    public long getVisionScorePerMinute() {
+    public float getVisionScorePerMinute() {
         return visionScorePerMinute;
     }
 

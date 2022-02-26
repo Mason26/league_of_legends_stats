@@ -14,7 +14,7 @@ public class MatchRestClient {
 
     RestTemplate restTemplate = new RestTemplate();
 
-    private static final String apiKey = "RGAPI-7359946c-aad0-40fc-9510-44dfd53f83b0";
+    private static final String apiKey = "insert api key from Riot";
 
     private static final String baseUrl = "https://europe.api.riotgames.com/lol/match/v5/matches";
 

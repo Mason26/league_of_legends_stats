@@ -3,8 +3,6 @@ package com.example.leaguestats.Domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.nio.charset.StandardCharsets;
-
 public class GameParticipantsDTO {
 
     private final long assists;
@@ -12,7 +10,6 @@ public class GameParticipantsDTO {
     private final String championName;
     private final long damageSelfMitigated;
     private final long deaths;
-    private final long detectorWardsPlaced;
     private final long doubleKills;
     private final long dragonKills;
     private final boolean firstBloodAssist;
@@ -26,7 +23,7 @@ public class GameParticipantsDTO {
     private final long largestCriticalStrike;
     private final long largestKillingSpree;
     private final long largestMultiKill;
-    private final long longestTimeSpentLiving;
+    private final float longestTimeSpentLiving;
     private final long magicDamageDealtToChampions;
     private final long neutralMinionsKilled;
     private final long objectivesStolen;
@@ -34,7 +31,6 @@ public class GameParticipantsDTO {
     private final long physicalDamageDealtToChampions;
     private final long quadraKills;
     private final String role;
-    private final long sightWardsBoughtInGame;
     private final long spell1Casts;
     private final long spell2Casts;
     private final long spell3Casts;
@@ -45,14 +41,12 @@ public class GameParticipantsDTO {
     private final long summoner2Id;
     private final String summonerName;
     private final long timeCCingOthers;
-    private final long timePlayed;
     private final long totalDamageDealtToChampions;
     private final long totalDamageShieldedOnTeammates;
     private final long totalDamageTaken;
     private final long totalHealsOnTeammates;
     private final long totalMinionsKilled;
-    private final long totalTimeCCDealt;
-    private final long totalTimeSpentDead;
+    private final float totalTimeSpentDead;
     private final long tripleKills;
     private final long trueDamageDealtToChampions;
     private final long turretKills;
@@ -62,37 +56,28 @@ public class GameParticipantsDTO {
     private final long wardsPlaced;
     private final boolean win;
 
-    private final long abilityUses;
-    private final long acesBefore15Minutes;
     private final long alliedJungleMonsterKills;
-    private final long blastConeOppositeOpponentCount;
     private final long buffsStolen;
     private final long controlWardsPlaced;
     private final long damagePerMinute;
-    private final long damageTakenOnTeamPercentage;
+    private final float damageTakenOnTeamPercentage;
     private final long dancedWithRiftHerald;
     private final long effectiveHealAndShielding;
-    private final long elderDragonKillsWithOpposingSoul;
-    private final long elderDragonMultikills;
-    private final long enemyChampionImmobilizations;
     private final long enemyJungleMonsterKills;
     private final long epicMonsterKillsNearEnemyJungler;
     private final long epicMonsterKillsWithin30SecondsOfSpawn;
     private final long epicMonsterSteals;
-    private final long firstTurretKilledTime;
+    private final float firstTurretKilledTime;
     private final long flawlessAces;
     private final long fullTeamTakedown;
-    private final long gameLength;
+    private final float gameLength;
     private final long goldPerMinute;
     private final long hadOpenNexus;
     private final float kda;
     private final float killParticipation;
-    private final long maxKillDeficit;
-    private final long mostWardsDestroyedOneSweeper;
-    private final long perfectDragonSoulsTaken;
     private final long riftHeraldTakedowns;
     private final long scuttleCrabKills;
-    private final long shortestTimeToAceFromFirstTakedown;
+    private final float shortestTimeToAceFromFirstTakedown;
     private final long skillshotsDodged;
     private final long skillshotsHit;
     private final long soloKills;
@@ -102,12 +87,10 @@ public class GameParticipantsDTO {
     private final long takedownsBeforeJungleMinionSpawn;
     private final long takedownsInAlcove;
     private final long takedownsInEnemyFountain;
-    private final long teamDamagePercentage;
-    private final long teamElderDragonKills;
-    private final long teamRiftHeraldKills;
+    private final float teamDamagePercentage;
     private final long turretPlatesTaken;
     private final long turretTakedowns;
-    private final long visionScorePerMinute;
+    private final float visionScorePerMinute;
     private final long wardTakedowns;
     private final long wardsGuarded;
 
@@ -119,7 +102,6 @@ public class GameParticipantsDTO {
             @JsonProperty("championName") String championName,
             @JsonProperty("damageSelfMitigated") long damageSelfMitigated,
             @JsonProperty("deaths") long deaths,
-            @JsonProperty("detectorWardsPlaced") long detectorWardsPlaced,
             @JsonProperty("doubleKills") long doubleKills,
             @JsonProperty("dragonKills") long dragonKills,
             @JsonProperty("firstBloodAssist") boolean firstBloodAssist,
@@ -133,7 +115,7 @@ public class GameParticipantsDTO {
             @JsonProperty("largestCriticalStrike") long largestCriticalStrike,
             @JsonProperty("largestKillingSpree") long largestKillingSpree,
             @JsonProperty("largestMultiKill") long largestMultiKill,
-            @JsonProperty("longestTimeSpentLiving") long longestTimeSpentLiving,
+            @JsonProperty("longestTimeSpentLiving") float longestTimeSpentLiving,
             @JsonProperty("magicDamageDealtToChampions") long magicDamageDealtToChampions,
             @JsonProperty("neutralMinionsKilled") long neutralMinionsKilled,
             @JsonProperty("objectivesStolen") long objectivesStolen,
@@ -141,7 +123,6 @@ public class GameParticipantsDTO {
             @JsonProperty("physicalDamageDealtToChampions") long physicalDamageDealtToChampions,
             @JsonProperty("quadraKills") long quadraKills,
             @JsonProperty("role") String role,
-            @JsonProperty("sightWardsBoughtInGame") long sightWardsBoughtInGame,
             @JsonProperty("spell1Casts") long spell1Casts,
             @JsonProperty("spell2Casts") long spell2Casts,
             @JsonProperty("spell3Casts") long spell3Casts,
@@ -152,14 +133,12 @@ public class GameParticipantsDTO {
             @JsonProperty("summoner2Id") long summoner2Id,
             @JsonProperty("summonerName") String summonerName,
             @JsonProperty("timeCCingOthers") long timeCCingOthers,
-            @JsonProperty("timePlayed") long timePlayed,
             @JsonProperty("totalDamageDealtToChampions") long totalDamageDealtToChampions,
             @JsonProperty("totalDamageShieldedOnTeammates") long totalDamageShieldedOnTeammates,
             @JsonProperty("totalDamageTaken") long totalDamageTaken,
             @JsonProperty("totalHealsOnTeammates") long totalHealsOnTeammates,
             @JsonProperty("totalMinionsKilled") long totalMinionsKilled,
-            @JsonProperty("totalTimeCCDealt") long totalTimeCCDealt,
-            @JsonProperty("totalTimeSpentDead") long totalTimeSpentDead,
+            @JsonProperty("totalTimeSpentDead") float totalTimeSpentDead,
             @JsonProperty("tripleKills") long tripleKills,
             @JsonProperty("trueDamageDealtToChampions") long trueDamageDealtToChampions,
             @JsonProperty("turretKills") long turretKills,
@@ -174,7 +153,6 @@ public class GameParticipantsDTO {
         this.championName = championName;
         this.damageSelfMitigated = damageSelfMitigated;
         this.deaths = deaths;
-        this.detectorWardsPlaced = detectorWardsPlaced;
         this.doubleKills = doubleKills;
         this.dragonKills = dragonKills;
         this.firstBloodAssist = firstBloodAssist;
@@ -188,7 +166,7 @@ public class GameParticipantsDTO {
         this.largestCriticalStrike = largestCriticalStrike;
         this.largestKillingSpree = largestKillingSpree;
         this.largestMultiKill = largestMultiKill;
-        this.longestTimeSpentLiving = longestTimeSpentLiving;
+        this.longestTimeSpentLiving = (longestTimeSpentLiving / 60);
         this.magicDamageDealtToChampions = magicDamageDealtToChampions;
         this.neutralMinionsKilled = neutralMinionsKilled;
         this.objectivesStolen = objectivesStolen;
@@ -196,7 +174,6 @@ public class GameParticipantsDTO {
         this.physicalDamageDealtToChampions = physicalDamageDealtToChampions;
         this.quadraKills = quadraKills;
         this.role = role;
-        this.sightWardsBoughtInGame = sightWardsBoughtInGame;
         this.spell1Casts = spell1Casts;
         this.spell2Casts = spell2Casts;
         this.spell3Casts = spell3Casts;
@@ -207,14 +184,12 @@ public class GameParticipantsDTO {
         this.summoner2Id = summoner2Id;
         this.summonerName = summonerName;
         this.timeCCingOthers = timeCCingOthers;
-        this.timePlayed = timePlayed;
         this.totalDamageDealtToChampions = totalDamageDealtToChampions;
         this.totalDamageShieldedOnTeammates = totalDamageShieldedOnTeammates;
         this.totalDamageTaken = totalDamageTaken;
         this.totalHealsOnTeammates = totalHealsOnTeammates;
         this.totalMinionsKilled = totalMinionsKilled;
-        this.totalTimeCCDealt = totalTimeCCDealt;
-        this.totalTimeSpentDead = totalTimeSpentDead;
+        this.totalTimeSpentDead = (totalTimeSpentDead / 60);
         this.tripleKills = tripleKills;
         this.trueDamageDealtToChampions = trueDamageDealtToChampions;
         this.turretKills = turretKills;
@@ -224,34 +199,25 @@ public class GameParticipantsDTO {
         this.wardsPlaced = wardsPlaced;
         this.win = win;
 
-        this.abilityUses = challenges.getAbilityUses();
-        this.acesBefore15Minutes = challenges.getAcesBefore15Minutes();
         this.alliedJungleMonsterKills = challenges.getAlliedJungleMonsterKills();
-        this.blastConeOppositeOpponentCount = challenges.getBlastConeOppositeOpponentCount();
         this.buffsStolen = challenges.getBuffsStolen();
         this.controlWardsPlaced = challenges.getControlWardsPlaced();
         this.damagePerMinute = challenges.getDamagePerMinute();
         this.damageTakenOnTeamPercentage = challenges.getDamageTakenOnTeamPercentage();
         this.dancedWithRiftHerald = challenges.getDancedWithRiftHerald();
         this.effectiveHealAndShielding = challenges.getEffectiveHealAndShielding();
-        this.elderDragonKillsWithOpposingSoul = challenges.getElderDragonKillsWithOpposingSoul();
-        this.elderDragonMultikills = challenges.getElderDragonMultikills();
-        this.enemyChampionImmobilizations = challenges.getEnemyChampionImmobilizations();
         this.enemyJungleMonsterKills = challenges.getEnemyJungleMonsterKills();
         this.epicMonsterKillsNearEnemyJungler = challenges.getEpicMonsterKillsNearEnemyJungler();
         this.epicMonsterKillsWithin30SecondsOfSpawn = challenges.getEpicMonsterKillsWithin30SecondsOfSpawn();
         this.epicMonsterSteals = challenges.getEpicMonsterSteals();
-        this.firstTurretKilledTime = challenges.getFirstTurretKilledTime();
+        this.firstTurretKilledTime = (challenges.getFirstTurretKilledTime() / 60);
         this.flawlessAces = challenges.getFlawlessAces();
         this.fullTeamTakedown = challenges.getFullTeamTakedown();
-        this.gameLength = challenges.getGameLength();
+        this.gameLength = (challenges.getGameLength() / 60);
         this.goldPerMinute = challenges.getGoldPerMinute();
         this.hadOpenNexus = challenges.getHadOpenNexus();
         this.kda = challenges.getKda();
         this.killParticipation = challenges.getKillParticipation();
-        this.maxKillDeficit = challenges.getMaxKillDeficit();
-        this.mostWardsDestroyedOneSweeper = challenges.getMostWardsDestroyedOneSweeper();
-        this.perfectDragonSoulsTaken = challenges.getPerfectDragonSoulsTaken();
         this.riftHeraldTakedowns = challenges.getRiftHeraldTakedowns();
         this.scuttleCrabKills = challenges.getScuttleCrabKills();
         this.shortestTimeToAceFromFirstTakedown = challenges.getShortestTimeToAceFromFirstTakedown();
@@ -265,8 +231,6 @@ public class GameParticipantsDTO {
         this.takedownsInAlcove = challenges.getTakedownsInAlcove();
         this.takedownsInEnemyFountain = challenges.getTakedownsInEnemyFountain();
         this.teamDamagePercentage = challenges.getTeamDamagePercentage();
-        this.teamElderDragonKills = challenges.getTeamElderDragonKills();
-        this.teamRiftHeraldKills = challenges.getTeamRiftHeraldKills();
         this.turretPlatesTaken = challenges.getTurretPlatesTaken();
         this.turretTakedowns = challenges.getTurretTakedowns();
         this.visionScorePerMinute = challenges.getVisionScorePerMinute();
@@ -292,10 +256,6 @@ public class GameParticipantsDTO {
 
     public long getDeaths() {
         return deaths;
-    }
-
-    public long getDetectorWardsPlaced() {
-        return detectorWardsPlaced;
     }
 
     public long getDoubleKills() {
@@ -350,7 +310,7 @@ public class GameParticipantsDTO {
         return largestMultiKill;
     }
 
-    public long getLongestTimeSpentLiving() {
+    public float getLongestTimeSpentLiving() {
         return longestTimeSpentLiving;
     }
 
@@ -380,10 +340,6 @@ public class GameParticipantsDTO {
 
     public String getRole() {
         return role;
-    }
-
-    public long getSightWardsBoughtInGame() {
-        return sightWardsBoughtInGame;
     }
 
     public long getSpell1Casts() {
@@ -426,10 +382,6 @@ public class GameParticipantsDTO {
         return timeCCingOthers;
     }
 
-    public long getTimePlayed() {
-        return timePlayed;
-    }
-
     public long getTotalDamageDealtToChampions() {
         return totalDamageDealtToChampions;
     }
@@ -450,11 +402,7 @@ public class GameParticipantsDTO {
         return totalMinionsKilled;
     }
 
-    public long getTotalTimeCCDealt() {
-        return totalTimeCCDealt;
-    }
-
-    public long getTotalTimeSpentDead() {
+    public float getTotalTimeSpentDead() {
         return totalTimeSpentDead;
     }
 
@@ -491,21 +439,8 @@ public class GameParticipantsDTO {
     }
 
 
-
-    public long getAbilityUses() {
-        return abilityUses;
-    }
-
-    public long getAcesBefore15Minutes() {
-        return acesBefore15Minutes;
-    }
-
     public long getAlliedJungleMonsterKills() {
         return alliedJungleMonsterKills;
-    }
-
-    public long getBlastConeOppositeOpponentCount() {
-        return blastConeOppositeOpponentCount;
     }
 
     public long getBuffsStolen() {
@@ -520,7 +455,7 @@ public class GameParticipantsDTO {
         return damagePerMinute;
     }
 
-    public long getDamageTakenOnTeamPercentage() {
+    public float getDamageTakenOnTeamPercentage() {
         return damageTakenOnTeamPercentage;
     }
 
@@ -530,18 +465,6 @@ public class GameParticipantsDTO {
 
     public long getEffectiveHealAndShielding() {
         return effectiveHealAndShielding;
-    }
-
-    public long getElderDragonKillsWithOpposingSoul() {
-        return elderDragonKillsWithOpposingSoul;
-    }
-
-    public long getElderDragonMultikills() {
-        return elderDragonMultikills;
-    }
-
-    public long getEnemyChampionImmobilizations() {
-        return enemyChampionImmobilizations;
     }
 
     public long getEnemyJungleMonsterKills() {
@@ -560,7 +483,7 @@ public class GameParticipantsDTO {
         return epicMonsterSteals;
     }
 
-    public long getFirstTurretKilledTime() {
+    public float getFirstTurretKilledTime() {
         return firstTurretKilledTime;
     }
 
@@ -572,7 +495,7 @@ public class GameParticipantsDTO {
         return fullTeamTakedown;
     }
 
-    public long getGameLength() {
+    public float getGameLength() {
         return gameLength;
     }
 
@@ -592,18 +515,6 @@ public class GameParticipantsDTO {
         return killParticipation;
     }
 
-    public long getMaxKillDeficit() {
-        return maxKillDeficit;
-    }
-
-    public long getMostWardsDestroyedOneSweeper() {
-        return mostWardsDestroyedOneSweeper;
-    }
-
-    public long getPerfectDragonSoulsTaken() {
-        return perfectDragonSoulsTaken;
-    }
-
     public long getRiftHeraldTakedowns() {
         return riftHeraldTakedowns;
     }
@@ -612,7 +523,7 @@ public class GameParticipantsDTO {
         return scuttleCrabKills;
     }
 
-    public long getShortestTimeToAceFromFirstTakedown() {
+    public float getShortestTimeToAceFromFirstTakedown() {
         return shortestTimeToAceFromFirstTakedown;
     }
 
@@ -652,16 +563,8 @@ public class GameParticipantsDTO {
         return takedownsInEnemyFountain;
     }
 
-    public long getTeamDamagePercentage() {
+    public float getTeamDamagePercentage() {
         return teamDamagePercentage;
-    }
-
-    public long getTeamElderDragonKills() {
-        return teamElderDragonKills;
-    }
-
-    public long getTeamRiftHeraldKills() {
-        return teamRiftHeraldKills;
     }
 
     public long getTurretPlatesTaken() {
@@ -672,7 +575,7 @@ public class GameParticipantsDTO {
         return turretTakedowns;
     }
 
-    public long getVisionScorePerMinute() {
+    public float getVisionScorePerMinute() {
         return visionScorePerMinute;
     }
 

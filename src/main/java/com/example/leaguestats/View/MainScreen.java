@@ -1,6 +1,5 @@
 package com.example.leaguestats.View;
 
-import com.example.leaguestats.Domain.TagLine;
 import com.example.leaguestats.RestClient.AccountDetails.AccountRestClient;
 import com.example.leaguestats.RestClient.MatchDetails.MatchRestClient;
 import com.example.leaguestats.Service.MatchDetailsRepository;
@@ -11,21 +10,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+
 class FormScreen extends JFrame
         implements ActionListener {
 
     // Components of the Form
     private final Container c;
-    private final JLabel title;
-    private final JLabel name;
-    private final JTextField tname;
-    private final JLabel mno;
-    private final JTextField tmno;
-    private final JTextArea tadd;
-    private final JTextArea taddTimeLine;
+    private final JTextField tUsername;
+    private final JLabel username;
+    private final JLabel matchId;
+    private final JTextField tMatchId;
+    private final JTextArea taStats;
 
-    private final JButton sub;
-    private final JButton reset;
+    private final ImageIcon eraImg = new ImageIcon("src/main/java/images/EraLOGO.png");
+    private final JLabel img;
+
+    private final JButton btnSubmit;
 
     //Services
     private final MatchDetailsRepository matchDetailsRepository;
@@ -34,85 +35,75 @@ class FormScreen extends JFrame
 
     // constructor, to initialize the components
     // with default values.
-    public FormScreen(MatchDetailsRepository matchDetailsRepository)
-    {
+    public FormScreen(MatchDetailsRepository matchDetailsRepository) {
         this.matchDetailsRepository = matchDetailsRepository;
 
-        setTitle("League Stats");
-        setBounds(300, 90, 1080, 900);
+        setTitle("Era Stats");
+        setBounds(300, 90, 1080, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
+        setResizable(true);
 
         c = getContentPane();
         c.setLayout(null);
-
-        title = new JLabel("Get Match Information");
-        title.setFont(new Font("Arial", Font.PLAIN, 30));
-        title.setSize(300, 30);
-        title.setLocation(300, 30);
-        c.add(title);
+        c.setBounds(50, 5, 5, 5);
+        c.setBackground(new Color(24, 24, 24) );
 
         //LABEL
 
-        name = new JLabel("Username");
-        name.setFont(new Font("Arial", Font.PLAIN, 20));
-        name.setSize(250, 30);
-        name.setLocation(100, 100);
-        c.add(name);
+        username = new JLabel("Username");
+        username.setFont(new Font("Arial", Font.PLAIN, 20));
+        username.setForeground(Color.WHITE);
+        username.setSize(250, 30);
+        username.setLocation(440, 320);
+        c.add(username);
 
-        mno = new JLabel("Match Id");
-        mno.setFont(new Font("Arial", Font.PLAIN, 20));
-        mno.setSize(250, 30);
-        mno.setLocation(100, 200);
-        c.add(mno);
+        matchId = new JLabel("Match Id");
+        matchId.setFont(new Font("Arial", Font.PLAIN, 20));
+        matchId.setForeground(Color.WHITE);
+        matchId.setSize(250, 30);
+        matchId.setLocation(440, 420);
+        c.add(matchId);
+
+        img = new JLabel();
+        img.setIcon(eraImg);
+        img.setSize(1080, 400);
+        img.setLocation(-150, 0);
+        c.add(img);
 
         //TEXT
 
-        tname = new JTextField();
-        tname.setFont(new Font("Arial", Font.PLAIN, 15));
-        tname.setSize(190, 20);
-        tname.setLocation(300, 100);
-        c.add(tname);
+        tUsername = new JTextField();
+        tUsername.setFont(new Font("Arial", Font.PLAIN, 15));
+        tUsername.setSize(190, 20);
+        tUsername.setLocation(400, 350);
+        c.add(tUsername);
 
-        tmno = new JTextField();
-        tmno.setFont(new Font("Arial", Font.PLAIN, 15));
-        tmno.setSize(190, 20);
-        tmno.setLocation(300, 200);
-        c.add(tmno);
+        tMatchId = new JTextField();
+        tMatchId.setFont(new Font("Arial", Font.PLAIN, 15));
+        tMatchId.setSize(190, 20);
+        tMatchId.setLocation(400, 450);
+        c.add(tMatchId);
 
         //TEXT AREA
 
-        tadd = new JTextArea();
-        tadd.setFont(new Font("Arial", Font.PLAIN, 15));
-        tadd.setSize(550, 350);
-        tadd.setLocation(500, 100);
-        tadd.setLineWrap(true);
-        tadd.setMargin(new Insets(5, 5, 5, 5));
-        c.add(tadd);
-
-        taddTimeLine = new JTextArea();
-        taddTimeLine.setFont(new Font("Arial", Font.PLAIN, 15));
-        taddTimeLine.setSize(550, 350);
-        taddTimeLine.setLocation(500, 500);
-        taddTimeLine.setLineWrap(true);
-        taddTimeLine.setMargin(new Insets(5, 5, 5, 5));
-        c.add(taddTimeLine);
+        taStats = new JTextArea();
+        taStats.setFont(new Font("Arial", Font.PLAIN, 15));
+        taStats.setSize(1050, 200);
+        taStats.setLocation(10, 550);
+        taStats.setLineWrap(true);
+        taStats.setMargin(new Insets(5, 5, 5, 5));
+        c.add(taStats);
 
         //BUTTONS
 
-        sub = new JButton("Submit");
-        sub.setFont(new Font("Arial", Font.PLAIN, 15));
-        sub.setSize(100, 20);
-        sub.setLocation(150, 450);
-        sub.addActionListener(this);
-        c.add(sub);
-
-        reset = new JButton("Reset");
-        reset.setFont(new Font("Arial", Font.PLAIN, 15));
-        reset.setSize(100, 20);
-        reset.setLocation(270, 450);
-        reset.addActionListener(this);
-        c.add(reset);
+        btnSubmit = new JButton("Submit");
+        btnSubmit.setFont(new Font("Arial", Font.PLAIN, 15));
+        btnSubmit.setSize(100, 20);
+        btnSubmit.setLocation(440, 500);
+        btnSubmit.addActionListener(this);
+        btnSubmit.setBackground(new Color(24, 24, 24) );
+        btnSubmit.setForeground(Color.WHITE);
+        c.add(btnSubmit);
 
         setVisible(true);
     }
@@ -122,41 +113,45 @@ class FormScreen extends JFrame
     // by the user and act accordingly
     public void actionPerformed(ActionEvent e)
     {
-        if (e.getSource() == reset) {
-            String def = "";
-            tname.setText(def);
-            tadd.setText(def);
-            tmno.setText(def);
+        if(!tUsername.getText().equals("") && !tMatchId.getText().equals("")){
+            retrieveMatchStats();
         }
-
-        else if(!tname.getText().equals("")){
-            List<String> matches = matchDetailsRepository.retrieveListOfMatches(tname.getText(), TagLine.EUW);
+        else if(!tMatchId.getText().equals("")){
+            retrieveMatchStats();
+        }
+        else if(!tUsername.getText().equals("")){
+            taStats.setText("");
+            List<String> matches = matchDetailsRepository.retrieveListOfMatches(tUsername.getText());
             for(String match : matches){
-                if(tadd.getText().equals("")){
-                    tadd.setText(match);
+                if(taStats.getText().equals("")){
+                    taStats.setText(match);
                 }
                 else {
-                    tadd.setText(tadd.getText() + "\n" + match);
+                    taStats.setText(taStats.getText() + "\n" + match);
                 }
             }
         }
-
-        else if(!tmno.getText().equals("")){
-            try {
-                List<String> singleMatchDetails = matchDetailsRepository.retrieveFullMatchCsv(tmno.getText());
-                for(String str : singleMatchDetails) {
-                    tadd.append(str + "\n");
-                }
-            } catch (Exception exception){
-                exception.printStackTrace();
-            }
+        else{
+            taStats.setText("");
+            taStats.setText("Nothing is selected");
         }
+    }
 
+    private void retrieveMatchStats() {
+        try {
+            taStats.setText("");
+            List<String> singleMatchDetails = matchDetailsRepository.retrieveFullMatchCsv(tMatchId.getText());
+            for(String str : singleMatchDetails) {
+                taStats.append(str + "\n");
+            }
+        } catch (Exception exception){
+            taStats.setText(exception.getMessage());
+        }
     }
 }
 
 public class MainScreen {
     public static void main(String[] args) {
-        FormScreen display = new FormScreen(new MatchDetailsRepository(new AccountRestClient(), new MatchRestClient()));
+        new FormScreen(new MatchDetailsRepository(new AccountRestClient(), new MatchRestClient()));
     }
 }

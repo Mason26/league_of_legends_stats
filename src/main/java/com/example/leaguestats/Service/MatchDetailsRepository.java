@@ -22,13 +22,13 @@ public class MatchDetailsRepository {
         this.matchRestClient = matchRestClient;
     }
 
-    private String getPuuid(String username, TagLine tagLine) {
-        AccountDetailsDTO accountDetailsDTO = accountRestClient.getPuuid(username, tagLine.name());
-        return accountDetailsDTO.getPuuid();
+    private String getPuuid(String username) {
+        SummonerDTO summonerDTO = accountRestClient.getPuuid(username);
+        return summonerDTO.getPuuid();
     }
 
-    public List<String> retrieveListOfMatches(String username, TagLine tagLine) {
-        String puuid = getPuuid(username, tagLine);
+    public List<String> retrieveListOfMatches(String username) {
+        String puuid = getPuuid(username);
         return matchRestClient.getMatchesByPuuid(puuid);
     }
 
@@ -40,7 +40,8 @@ public class MatchDetailsRepository {
     }
 
     public List<String> retrieveFullMatchCsv(String matchId) throws JsonProcessingException {
-        FullMatchDTO fullMatchDTO = retrieveAllMatchInformation(matchId);
+        String matchIdWithTagline = "EUW1_" + matchId;
+        FullMatchDTO fullMatchDTO = retrieveAllMatchInformation(matchIdWithTagline);
 
         return convertToCSV(fullMatchDTO);
     }
@@ -94,43 +95,13 @@ public class MatchDetailsRepository {
         frameDetailsDTOArrayList.add(framesDTOList.get(0).getParticipantFrames().getFrameDetailsDTO9());
         frameDetailsDTOArrayList.add(framesDTOList.get(0).getParticipantFrames().getFrameDetailsDTO10());
 
-        //Damage Stats DTO
-//        List<DamageStatsDTO> damageStatsDTOList = new ArrayList<>();
-//        for(FrameDetailsDTO frameDetailsDTO : frameDetailsDTOArrayList){
-//            damageStatsDTOList.add(new DamageStatsDTO(frameDetailsDTO.getDamageStats().getTotalDamageDoneToChampions(), frameDetailsDTO.getDamageStats().getTotalDamageTaken()));
-//        }
-
-        //Full Match DTO
-
         CsvSchema gameParticipantsSchema = csvMapper.schemaFor(GameParticipantsDTO.class).withHeader();
         csvList.add(csvMapper.writer(gameParticipantsSchema).writeValueAsString(gameParticipantsDTOList));
-
-//        CsvSchema challengesSchema = csvMapper.schemaFor(ChallengesDTO.class).withHeader().withColumnsFrom(gameParticipantsSchema);
-//        csvList.add(csvMapper.writer(challengesSchema).writeValueAsString(gameParticipantsDTOList));
-
 
         CsvSchema damageStatsSchema = csvMapper.schemaFor(DamageStatsDTO.class).withHeader();
 
         CsvSchema frameDetailsSchema = csvMapper.schemaFor(FrameDetailsDTO.class).withHeader().withColumnsFrom(damageStatsSchema);
         csvList.add(csvMapper.writer(frameDetailsSchema).writeValueAsString(frameDetailsDTOArrayList));
-
-
-//        csvList.add(csvMapper.writer(damageStatsSchema).writeValueAsString(damageStatsDTOList));
-
-
-//        csvMapper.enable(CsvParser.Feature.WRAP_AS_ARRAY);
-//
-//        CsvSchema challengesSchema = csvMapper.schemaFor(ChallengesDTO.class).withHeader();
-//        String challengesSchemaCsv = csvMapper.writer(challengesSchema).writeValueAsString(gameParticipantsDTOList);
-//
-//        CsvSchema frameDetailsSchema = csvMapper.schemaFor(FrameDetailsDTO.class).withHeader();
-//        String frameDetailsSchemaCsv = csvMapper.writer(frameDetailsSchema).writeValueAsString(frameDetailsDTOArrayList);
-//
-//        CsvSchema damageStatsSchema = csvMapper.schemaFor(DamageStatsDTO.class).withHeader();
-//        String damageStatsSchemaCsv = csvMapper.writer(damageStatsSchema).writeValueAsString(damageStatsDTOList);
-//
-//        CsvSchema gameParticipantsSchema = csvMapper.schemaFor(GameParticipantsDTO.class).withHeader().withColumnsFrom(challengesSchema).withColumnsFrom(frameDetailsSchema).withColumnsFrom(damageStatsSchema);
-//        String gameParticipantsSchemaCsv = csvMapper.writer(gameParticipantsSchema).writeValueAsString(gameParticipantsDTOList);
 
         return csvList;
     }

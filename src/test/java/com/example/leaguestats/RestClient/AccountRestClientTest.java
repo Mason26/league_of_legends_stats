@@ -1,6 +1,6 @@
 package com.example.leaguestats.RestClient;
 
-import com.example.leaguestats.Domain.AccountDetailsDTO;
+import com.example.leaguestats.Domain.SummonerDTO;
 import com.example.leaguestats.RestClient.AccountDetails.AccountRestClient;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
@@ -14,10 +14,9 @@ class AccountRestClientTest {
     @Ignore
     public void testRetrieveAccountDetails() {
 
-        String name = "Left Ball";
-        String tagLine = "EUW";
+        String name = "insert summoner name";
 
-        AccountDetailsDTO actual = accountRestClient.getPuuid(name, tagLine);
+        SummonerDTO actual = accountRestClient.getPuuid(name);
 
         System.out.println(actual.toString());
     }

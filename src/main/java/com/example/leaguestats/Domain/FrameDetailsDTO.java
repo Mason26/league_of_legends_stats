@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FrameDetailsDTO {
 
     private final long totalGold;
-//    private final DamageStatsDTO damageStats;
     private final long level;
     private final long minionsKilled;
     private final long jungleMinionsKilled;
@@ -24,7 +23,6 @@ public class FrameDetailsDTO {
             @JsonProperty("jungleMinionsKilled") long jungleMinionsKilled
     ) {
         this.totalGold = totalGold;
-//        this.damageStats = damageStats;
         this.level = level;
         this.minionsKilled = minionsKilled;
         this.jungleMinionsKilled = jungleMinionsKilled;
@@ -36,10 +34,6 @@ public class FrameDetailsDTO {
     public long getTotalGold() {
         return totalGold;
     }
-
-//    public DamageStatsDTO getDamageStats() {
-//        return damageStats;
-//    }
 
     public long getLevel() {
         return level;
